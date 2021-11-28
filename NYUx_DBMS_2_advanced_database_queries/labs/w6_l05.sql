@@ -1,4 +1,7 @@
-/* Write a SELECT statement that returns one row for each customer that has orders with these columns:
+/*
+Modify the solution to lab 4 so it only counts and totals line items that have an item_price value that’s greater than 400.
+lab4:
+Write a SELECT statement that returns one row for each customer that has orders with these columns:
    - The email_address column from the Customers table
    - A count of the number of orders aliased as order_count
    - The total amount for each order aliased as order_total (Hint: First, subtract the discount amount from the price. Then, multiply by the quantity.)
@@ -13,6 +16,7 @@ FROM customers
 		ON customers.customer_id = orders.customer_id
 	JOIN order_items
 		ON orders.order_id = order_items.order_id
+WHERE item_price > 400
 GROUP BY customers.customer_id
 HAVING order_count > 1
 ORDER BY order_total DESC;
