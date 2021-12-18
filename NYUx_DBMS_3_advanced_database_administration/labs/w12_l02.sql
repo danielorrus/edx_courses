@@ -5,7 +5,8 @@
 	(the discount amount subtracted from the item price), quantity, and item_total
     (the calculated total for the item - quantity * price). */
 
--- CREATE OR REPLACE VIEW order_item_products AS
+USE my_guitar_shop;
+CREATE OR REPLACE VIEW order_item_products AS
 	SELECT
 		o.order_id,
 		o.order_date,
@@ -14,11 +15,9 @@
         p.product_name,
         oi.item_price,
         oi.discount_amount,
-        oi.item_price - oi.discount_amount AS item_total
+        (oi.item_price - oi.discount_amount) AS item_total
 	FROM orders AS o
 		INNER JOIN order_items AS oi 
-			ON o.customer_id  = a1.customer_id
-            AND c.shipping_address_id = a1.address_id
+			ON o.order_id  = oi.order_id
 		INNER JOIN products AS p
-			ON c.customer_id  = a2.customer_id
-            AND c.billing_address_id = a2.address_id
+			ON oi.product_id  = p.product_id
