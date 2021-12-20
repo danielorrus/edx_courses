@@ -29,7 +29,7 @@ CREATE OR REPLACE VIEW product_summary AS
     GROUP BY product_name
 */
 
--- CREATE OR REPLACE VIEW best_products AS
+CREATE OR REPLACE VIEW best_products AS
 	SELECT *
     FROM product_summary
     ORDER BY order_total DESC LIMIT 5
