@@ -13,13 +13,15 @@ DELIMITER //
 CREATE PROCEDURE test()
 BEGIN
 	DECLARE texto VARCHAR(100) DEFAULT 'Common factors of 10 and 20:';
-	
-    WHILE i < 20 DO
-		IF (() AND ())
+	DECLARE i INT DEFAULT 0;
     
-    IF product_count > 6 THEN SELECT 'The number of products is greater than or equal to 7' AS result;
-    ELSE SELECT 'The number of products is less than 7' AS result;
-    END IF;
+    WHILE i < 10 DO
+		SET i = i + 1;
+		IF (((10 % i) = 0) AND ((20 % i) = 0)) THEN
+			SET texto = CONCAT(texto, ' ' ,CONVERT(i, CHAR));
+		END IF;
+	END WHILE;
+    SELECT texto AS result;
 END //
     
 DELIMITER ;
